@@ -1,4 +1,4 @@
-const CACHE = "cleancue-pilot-v4";
+const CACHE = "cleancue-pilot-v6";
 const SHELL = ["./", "./manifest.webmanifest", "./icon.svg", "./privacy.html", "./support.html", "./terms.html"];
 
 async function precacheApp() {
@@ -21,9 +21,13 @@ self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
+  if (url.searchParams.has("code") || url.searchParams.has("token_hash") || url.pathname.includes("/auth/")) return;
   if (/\/assets\/.*\.(?:js|css)$/.test(url.pathname)) {
     event.respondWith(caches.match(event.request, { ignoreVary: true }).then((cached) => cached || fetch(event.request)));
     return;
   }
-  event.respondWith(fetch(event.request).then((response) => { const copy = response.clone(); caches.open(CACHE).then((cache) => cache.put(event.request, copy)); return response; }).catch(() => caches.match(event.request).then((cached) => cached || (event.request.mode === "navigate" ? caches.match("./") : undefined))));
+  event.respondWith(fetch(event.request).then((response) => {
+    if (response.ok) { const copy = response.clone(); caches.open(CACHE).then((cache) => cache.put(event.request, copy)); }
+    return response;
+  }).catch(() => caches.match(event.request).then((cached) => cached || (event.request.mode === "navigate" ? caches.match("./") : undefined))));
 });

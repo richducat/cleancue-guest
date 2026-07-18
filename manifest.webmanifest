@@ -1,11 +1,11 @@
 {
-  "name": "CleanCue DJ Pilot",
+  "name": "CleanCue Live DJ",
   "short_name": "CleanCue",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#090a0d",
   "theme_color": "#090a0d",
-  "description": "A private DJ safety and event workflow pilot.",
+  "description": "A private two-deck DJ mixer with lyric safety, tempo tools, requests, and emcee notes.",
   "icons": [
     { "src": "./icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
     { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
