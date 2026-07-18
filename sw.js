@@ -1,4 +1,4 @@
-const CACHE = "cleancue-pilot-v6";
+const CACHE = "cleancue-pilot-v7";
 const SHELL = ["./", "./manifest.webmanifest", "./icon.svg", "./privacy.html", "./support.html", "./terms.html"];
 
 async function precacheApp() {
